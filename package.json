@@ -1,0 +1,14 @@
+{
+  "name": "vuedemo",
+  "version": "1.0.0",
+  "description": "Vue 实例",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "neil",
+  "license": "MIT"
+}
