@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 内部指令</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-if、v-else、v-show指令</h1>
+<hr>
+<p id="app">
+    <span v-if="isMan">我是男生</span>
+    <span v-else>我是女生</span>
+    <span v-show="isMan">显示</span>
+</p>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            isMan: false
+        }
+    });
+</script>
+<!--笔记-->
+<!--Vue的内部指令比JQuery更简单，直接没有了DOM操作，让开发只关心业务逻辑-->
+</body>
+</html>
