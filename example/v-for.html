@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-for指令</h1>
+<hr>
+<div id="app">
+<ul>
+    <li v-for="item in sortItems">
+        {{ item }}
+    </li>
+</ul>
+<hr>
+<ul>
+    <li v-for="student in students">
+        {{ student.name }} : {{ student.age }}
+    </li>
+</ul>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            items: [13,21,29,5,22,89,34],
+            students: [
+                {name:"zhangye",age: "80"},
+                {name:"zhangzong",age: "40"},
+                {name:"zhangge",age: "30"},
+                {name:"neil",age: "20"}
+            ]
+
+        },
+        computed: {
+            sortItems: function(){
+                return this.items.sort(sortNumber);
+            }
+        }
+    });
+    function sortNumber(a,b){
+        return a-b;
+    }
+</script>
+<!--笔记-->
+<!--
+1.普通数组的单纯循环
+2.普通数组的排序循环
+    computed属性是在data数据渲染进页面之前执行的逻辑函数，最新版Vue不支持此函数与data里面的属性名相同。
+3.值为对象的数组的排序循环
+
+-->
+</body>
+</html>
