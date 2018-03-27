@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on事件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<!--<h1>v-on绑定事件</h1>-->
+<hr>
+<p id="app">
+    {{ message }} {{ score }}
+    <br>
+    <button @click="add_score">加分</button>
+    <button @click="subtract_score">减分</button>
+    <br>
+    <img src="" alt="" style="width: 100%;">
+</p>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "🏀分数：",
+            score: "0",
+            imgUrl: "http://7xjyw1.com1.z0.glb.clouddn.com/20170227001137.jpg"
+        },
+        methods: {
+            add_score: function(){
+                this.score++;
+            },
+            subtract_score: function(){
+                this.score--;
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.v-on:click绑定了点击事件，还可以绑定其他的任何事件，这也简化了JQuery的$(document).on("click","",functin(){});用法
+2.v-on:的简化写法：@
+-->
+</body>
+</html>
