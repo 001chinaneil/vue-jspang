@@ -12,19 +12,49 @@
     {{ message }}
     <br>
     <p>v-modal:<input type="text" v-model="message" /></p>
+    <p>v-modal.number:<input type="text" v-model.number="message" /></p>
+    <p>v-modal.lazy:<input type="text" v-model.lazy="message" /></p>
+    <p>v-modal.trim:<input type="text" v-model.trim="message" /></p>
+    <textarea name="" id="" cols="30" rows="10" v-model="message"></textarea>
+    <hr>
+    <p>多选按钮绑定一个值</p>
+    <p><input type="checkbox" id="isTrue" v-model="isTrue"></p>
+    <hr>
+    <p>多选按钮绑定一个数组</p>
+    <div>
+        <input type="checkbox" v-model="web_names" id="zhangye" value="zhangye">zhangye
+        <input type="checkbox" v-model="web_names" id="zhangzong" value="zhangzong">zhangzong
+        <input type="checkbox" v-model="web_names" id="zhangge" value="zhangge">zhangge
+        <p>{{ web_names }}</p>
+    </div>
+    <p>单选按钮绑定数据</p>
+    <div>
+        <input type="radio" id="man" v-model="sex" value="man" />男
+        <input type="radio" id="woman" v-model="sex" value="woman" />女
+        <p>{{ sex }}</p>
+    </div>
 </div>
 <script type="text/javascript">
     var vue = new Vue({
         el: "#app",
         data: {
-            message: ""
+            message: "Hello World!",
+            isTrue: true,
+            web_names: [],
+            sex: ""
         }
     });
 </script>
 <!--笔记-->
 <!--
-1.v-modal="message" 绑定数据源，双向绑定，业务逻辑的数据变动会表现在页面上，
+1.v-model="message" 绑定数据源，双向绑定，业务逻辑的数据变动会表现在页面上，
 页面上的变动却不会更改业务代码里面的数据
+2.修饰符：.number只可以填写数字，but前提是第一位是数字，否则无效。
+        .lazy 只要输入框失去焦点时，才会同步数据
+        .trim 去掉输入的内容前后的空格
+3.v-model只和输入框绑定数据，且Vue刷新机制，怎么是整体刷新呢？
+4.v-model="true"，则代表选中；v-model="array"，则代表绑定一个数组，value还是原先的含义
+5.v-model绑定的是data里的某个数据属性，绑定的目标input的选中与否才是重点，而且value值会被复制到此数据属性中。
 -->
 </body>
 </html>
