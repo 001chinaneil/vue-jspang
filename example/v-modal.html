@@ -6,18 +6,25 @@
     <script type="text/javascript" src="../assets/js/vue.js"></script>
 </head>
 <body>
-<h1>v-modal指令</h1>
+<!--<h1>v-modal指令</h1>-->
 <hr>
-<p id="app">
+<div id="app">
     {{ message }}
-</p>
+    <br>
+    <p>v-modal:<input type="text" v-model="message" /></p>
+</div>
 <script type="text/javascript">
     var vue = new Vue({
         el: "#app",
         data: {
-            message: "Hello World!123"
+            message: ""
         }
     });
 </script>
+<!--笔记-->
+<!--
+1.v-modal="message" 绑定数据源，双向绑定，业务逻辑的数据变动会表现在页面上，
+页面上的变动却不会更改业务代码里面的数据
+-->
 </body>
 </html>
