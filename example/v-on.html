@@ -14,7 +14,7 @@
     <button @click="add_score">加分</button>
     <button @click="subtract_score">减分</button>
     <br>
-    <img src="" alt="" style="width: 100%;">
+    <img v-bind:src="imgUrl" alt="" style="width: 100%;">
 </p>
 <script type="text/javascript">
     var vue = new Vue({

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<!--<h1>v-bind指令</h1>-->
+<hr>
+<div id="app">
+    <p><img v-bind:src="imgUrl" alt=""></p>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123",
+            imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522343653284&di=9fb90a8a9e79703fd14db276471b6aaa&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FOQiYtHnBG0ODbd6wwSo3eA%3D%3D%2F7806613921071343067.jpg"
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.v-bind指令绑定的是元素标签的属性值，简写 :
+2.Vue常见内部指令完全可以处理渲染页面的工作，像公共弹窗不易写在页面里的，就用组件模板完成，类似于现在的代码组织形式
+-->
+</body>
+</html>
