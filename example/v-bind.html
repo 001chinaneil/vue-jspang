@@ -4,19 +4,58 @@
     <meta charset="UTF-8">
     <title>v-bind</title>
     <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <style type="text/css">
+        .classRed{
+            color: red;
+        }
+        .classFontSize{
+            font-size: 40px;
+        }
+    </style>
 </head>
 <body>
 <!--<h1>v-bind指令</h1>-->
 <hr>
 <div id="app">
     <p><img v-bind:src="imgUrl" alt=""></p>
+    <hr>
+    <p>1.绑定class类</p>
+    <p v-bind:class="red">JsPang</p>
+    <p v-bind:class="font">JsPang</p>
+    <p>2.利用绑定class类来做判断</p>
+    <p v-bind:class="{ classFontSize:isOK }">JSpang</p>
+    <p><input type="checkbox" id="isOK" v-model="isOK" /> {{ isOK }} </p>
+    <p>3.绑定class类来做三元运算(2和3不好辨认)</p>
+    <p :class=" isOK?red:font ">JSpang</p>
+    <p>4.用数组绑定多个类</p>
+    <p v-bind:class="[red,font]">Hello World!!!</p>
+    <p>5.绑定行内样式(5跟2的用法很相似，花括号+真+假)</p>
+    <p v-bind:style="{ color:sRed }">Hello Vue</p>
+    <p>6.用对象的形式绑定多个行内样式</p>
+    <p v-bind:style="styleObject">Hello 愚人节</p>
 </div>
 <script type="text/javascript">
+    //1.绑定class类
+    //2.利用绑定class类来做判断
+    //3.绑定class类来做三元运算
+    //4.用数组绑定多个类
+    //5.绑定行内样式
+    //6.用对象的形式绑定多个行内样式
     var vue = new Vue({
         el: "#app",
         data: {
             message: "Hello World!123",
-            imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522343653284&di=9fb90a8a9e79703fd14db276471b6aaa&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FOQiYtHnBG0ODbd6wwSo3eA%3D%3D%2F7806613921071343067.jpg"
+            imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522343653284&di=9fb90a8a9e79703fd14db276471b6aaa&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FOQiYtHnBG0ODbd6wwSo3eA%3D%3D%2F7806613921071343067.jpg",
+            red: "classRed",
+            font: "classFontSize",
+            isOK: true,
+            sRed: "red",
+            styleObject: {
+                color: "green",
+                fontSize: "30px",
+                fontWeight: "bold"
+            }
+
         }
     });
 </script>
@@ -24,6 +63,7 @@
 <!--
 1.v-bind指令绑定的是元素标签的属性值，简写 :
 2.Vue常见内部指令完全可以处理渲染页面的工作，像公共弹窗不易写在页面里的，就用组件模板完成，类似于现在的代码组织形式
+3.v-bind:class="{ classFontSize:isOK }" 仔细看还是常规写法
 -->
 </body>
 </html>

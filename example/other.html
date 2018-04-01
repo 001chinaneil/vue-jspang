@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-per&v-cloak&v-once</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <style type="text/css">
+        [v-cloak]{
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Vue的其他指令</h1>
+<hr>
+<div id="app">
+    {{ message }}
+    <hr>
+    <p v-pre>{{ message }}</p>
+    <p v-cloak>{{ message }}</p>
+    <p v-once>{{ message }}</p>
+    <p><input type="text" v-model="message"></p>
+</div>
+<script type="text/javascript">
+    setTimeout(function(){
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello World!123"
+            }
+        });
+    },10000);
+</script>
+<!--笔记-->
+<!--
+1.v-per是原始输出，不做什么处理
+2.v-cloak是页面加载完才显示，它必须和CSS样式一起使用[?]
+3.v-once是只加载一次，后期不做数据绑定
+-->
+</body>
+</html>
