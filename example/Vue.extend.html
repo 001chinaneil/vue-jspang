@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.extend API</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Vue.extend API</h1>
+<hr>
+<div id="app">
+    <author></author>
+</div>
+<script type="text/javascript">
+    var authorExtend = Vue.extend({//记忆点 1
+        template: "<p><a :href='authorUrl' target='_blank'>{{ name }}</a></p>",
+        data: function(){//记忆点 2
+            return { //记忆点 3
+                name: "jsPang",
+                authorUrl: "https://www.baidu.com"
+            }
+        }
+    });
+    new authorExtend().$mount("author");//挂在到DOM 记忆点 4
+</script>
+<!--笔记-->
+<!--
+1.Vue.extend 的使用场景是为组件加扩展，类似于组件
+2.主要是使用方式的记忆哦
+-->
+</body>
+</html>

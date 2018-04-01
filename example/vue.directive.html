@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.directive API</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Vue.directive API</h1>
+<hr>
+<div id="app">
+    <p v-jspang="color">{{ num }}</p>
+    <p><button @click="add">add</button></p>
+    <p><button onclick="unbind()">解绑</button></p>
+</div>
+<script type="text/javascript">
+    function unbind(){
+        vue.$destroy();
+    }
+    //自定义命令，让文字变颜色
+    Vue.directive("jspang",{
+        bind:function(){//被绑定
+            console.log('1 - bind');
+        },
+        inserted:function(){//绑定到节点
+            console.log('2 - inserted');
+        },
+        update:function(){//组件更新
+            console.log('3 - update');
+        },
+        componentUpdated:function(){//组件更新完成
+            console.log('4 - componentUpdated');
+        },
+        unbind:function(){//解绑
+            console.log('5 - unbind');
+        }
+    });
+    //function(el,binding){
+    // console.log(el);//代表着此DOM结构
+    // console.log(binding);//代表着此DOM结构绑定的数据值
+    // console.log(binding.value);
+    // el.style = "color:" + binding.value;//用最原始的JS定义函数内部逻辑。
+    //}
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            num: "10",
+            color: "red"
+        },
+        methods:{
+            add: function(){
+                this.num++;
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.Vue.directive API可以自定义Vue指令，规定此指令的名称和功能。自定义函数内部是使用原生JS写的逻辑，
+传递的参数：
+el: 此绑定的DOM结构
+binding: 此DOM结构绑定的数据对象，里面包含name,value
+vnode: Vue编译生成的虚拟节点
+
+Vue数据绑定期间发送的5个钩子函数：
+bing: 初始化绑定
+inserted: 数据插入父节点时调用
+update: 被绑定于元素所在的模板更新时调用，而无论绑定值是否变化，通过前后的比较，可以忽略不必要的模板更新。
+componentUpdated: 被绑定元素所在模板完成一次模板更新时调用
+unbind: 只调用一次，当指令与模板解绑时调用  eg: vue.$destroy();
+-->
+</body>
+</html>
