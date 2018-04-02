@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.set</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<!--<h1>Vue.set 全局操作API</h1>-->
+<hr>
+<div id="app">
+    {{ message }}
+    <p>{{ count }}</p>
+    <ul>
+        <li v-for="item in items">{{ item }}</li>
+    </ul>
+    <p><button onclick="add()">add</button></p>
+</div>
+<script type="text/javascript">
+    function add(){
+        //1.Vue.set
+        // Vue.set(outData,"count","2");
+        //2.
+        // outData.count++;
+        //3.
+        // vue.count++;
+        // vue.items[1] = "ddd";
+        Vue.set(outData.items,1,"dd");
+    }
+    var outData = {
+        count: "1",
+        message: "Hello Vue.set",
+        items: ["aaa","bbb","ccc"]
+    }
+    var vue = new Vue({
+        el: "#app",
+        data: outData
+    });
+</script>
+<!--笔记-->
+<!--
+1.Vue.set是为了在Vue构造器外部操作内部date设计的，在依据数组下标等索引时，可以达到自动更新DOM的目的。
+-->
+</body>
+</html>
