@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template模板</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>template模板</h1>
+<hr>
+<div id="app">
+    {{ message }}
+</div>
+{{ message }}
+<!--template模板可以放在目标Dom的外面，而可以正常使用-->
+<template id="demo2">
+    <h2>Hello 我是template标签模板 {{ message }}</h2><!--模板并不能充当标签，该用的标签还是要用-->
+</template>
+<script type="x-template" id="demo3">
+    <h2>Hello 我是template script模板</h2>
+</script>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123"
+        },
+        // template:`<h2>Hello 我是template选项模板</h2>`
+        //一下子把message数据搞掉了，厉害
+        template: "#demo2"
+    });
+</script>
+<!--笔记-->
+<!--
+1.template可以放到el盒子的外面，里面可以正常使用data数值
+2.选项template、标签template、script的template的内容依次增大，
+最后的script的template中src属性都可以引入一个外部文件
+-->
+</body>
+</html>
