@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component父子组件关系</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Hello World</h1>
+<hr>
+<div id="app">
+    {{ message }}
+    <hr>
+    <panda></panda>
+</div>
+<script type="text/javascript">
+    var cityComponent = {
+        template: `<div style="color: red;">siChuan of China</div>`
+    }
+    var pandaComponent = {
+        template: `
+            <div style="color: blue;">
+                panda form
+                <city></city>
+            </div>`,
+        components: {
+            "city": cityComponent
+        }
+    }
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123"
+        },
+        components: {
+            "panda": pandaComponent
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.组件间的父子关系: 在父组件里面打算添加子组件，那么在父组件里面的components选项里在注册子组件，
+最后子组件要在父组件上面出现。
+-->
+</body>
+</html>

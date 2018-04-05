@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component标签</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Hello World</h1>
+<hr>
+<div id="app">
+    <hr>
+    <component v-bind:is="who"></component>
+    <button v-on:click="changeComponent">changeComponent</button>
+</div>
+<script type="text/javascript">
+    var componentA = {
+        template:  `<div style="color: red;">这是组件A</div>`
+    }
+    var componentB = {
+        template:  `<div style="color: red;">这是组件B</div>`
+    }
+    var componentC = {
+        template:  `<div style="color: red;">这是组件C</div>`
+    }
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            who: "componentA"
+        },
+        components: {
+            "componentA": componentA,
+            "componentB": componentB,
+            "componentC": componentC
+        },
+        methods: {
+            "changeComponent": function () {
+                if(this.who == componentA){
+                    this.who = componentB;
+                }else if(this.who == componentB){
+                    this.who = componentC;
+                }else{
+                    this.who = componentA;
+                }
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.component标签专为绑定组件所设计，可以绑定任意组件：v-bind:is="whoComponent"
+2.whoComponen代表构造器里面data的绑定数组名，可动态绑定
+-->
+</body>
+</html>
