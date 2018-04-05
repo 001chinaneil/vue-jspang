@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component的prop属性</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>component的prop属性：自定义组件的属性</h1>
+<hr>
+<div id="app">
+    {{ message }}
+    <panda form-here="china"></panda>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123"
+        },
+        components: {
+            "panda": {
+                template: `<div style="color: red;">panda from {{ formHere }}</div>`,
+                props: ['formHere']
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.在构造器里面components就是一个选项，以对象的形式可以定义多个组件，
+每个自定义组件里面有template模板和props属性数组。在DOM结构里面自定义属性里面的属性值会传递到template的插入值里面
+我把自定义组件当做一个函数，外面传递的属性值就相当于参数值。
+2.属性值也可以是构造器data里面的自定义数据
+3.当自定义组件的属性带有 - 时，props属性里没有 - ，第二个单词首字母大写，即小驼峰写法。[易忘记]
+-->
+</body>
+</html>
