@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component-1</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>component-1</h1>
+<hr>
+<div id="app">
+    {{ message }}
+    <hr>
+    <jspang></jspang>
+    <hr>
+    <panda></panda>
+</div>
+<script type="text/javascript">
+    //Vue全局组件
+    Vue.component("jspang",{
+        template: `<div style="color: red;">这是全局注册的jspang标签</div>`
+    });
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123"
+        },
+        components: {
+            "panda": {
+                template: `<div style="color: blue;">这是局部注册的panda标签</div>`
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.全局注册的component组件，在任意一个注册的作用域内使用都可以。
+2.局部注册的component组件，只能在当前注册的作用域内使用才生效。是注册器的一个选项，后面带s
+3.组件和指令的区别：指令注册的是已有标签里面的一个属性，而组件注册的则是一个标签。
+-->
+</body>
+</html>
