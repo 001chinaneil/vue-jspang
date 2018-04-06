@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的methods选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Vue的methods选项</h1>
+<hr>
+<div id="app">
+    {{ message }}
+    <p><button v-on:click="add(2)">add</button></p>
+    <btn v-on:click.native="add(3)"></btn>
+</div>
+<button onclick="vue.add(5)">我是外部add</button>
+<script type="text/javascript">
+    var btn = {
+        template: `<button style="color: blue;">我是内部 add</button>`
+    }
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: 1
+        },
+        components: {
+            "btn": btn
+        },
+        methods: {
+            add: function(num){
+                if(num != "" && num !== NaN){
+                    this.message+=num;
+                }else{
+                    this.message++;
+                }
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.重点：组件中使用构造器里面的函数方法，需要使用.native修饰符，eg: v-on:click.native="add"。
+2.构造器外使用构造器内的函数方法，eg: onclick="vue.add(4)"。简直和JS原始组件一样，构造器就是一个全局变量，
+里面的数据和方法可以全局调用，而不会引起冲突。
+-->
+</body>
+</html>
