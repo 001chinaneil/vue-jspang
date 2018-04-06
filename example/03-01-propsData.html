@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue扩展的propsData选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Vue扩展的propsData选项</h1>
+<hr>
+<div id="app">
+    <header></header>
+</div>
+<script type="text/javascript">
+    var header_a = Vue.extend({
+        template: `<div style="color: blue;">here is {{ a }}</div>`,
+        props: ["a"]
+    });
+    new header_a({
+        propsData: {a: 1}
+    }).$mount("header");
+</script>
+<!--笔记-->
+<!--
+1.propsData选项专为Vue.extend();扩展传递数据设计，但每个传递的数据，都要在扩展的props里面用数组注册。
+    a、在全局扩展里加入props进行接收。propsData:{a:1}
+    b、传递时用propsData进行传递。props:['a']
+    c、用插值的形式写入模板。{{ a }}
+-->
+</body>
+</html>

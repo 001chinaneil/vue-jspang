@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重点：Vue的computed选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Vue的computed选项</h1>
+<hr>
+<div id="app">
+    {{ message }}
+    <hr>
+    <p>{{ newPrice }}</p>
+    <hr>
+    <ul>
+        <li v-for="news in newsListNow">{{ news.title }} -- {{ news.date }}</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var newsList = [
+        {title: "两会后非洲领导人接连访华 习近平这样描绘中非关系",date: "2018/04/01"},
+        {title: "致敬缅怀 为了更好地前行  为了民族复兴 英雄烈士谱",date: "2018/04/02"},
+        {title: "因为千千万万的他们 才有了我们强大的国 温暖的家",date: "2018/04/03"},
+        {title: "传承英烈志 奋进新时代—各地举行公祭活动缅怀先烈",date: "2018/04/04"}
+    ];
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123",
+            price: "100",
+            newsList: newsList
+        },
+        computed: {
+            newPrice: function(){
+                return this.price = "￥" + this.price + "元";
+            },
+            newsListNow: function () {
+                return this.newsList.reverse();
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.computed选项是在输出数据前对数据进行改造，这样就不会污染原始数据了。
+computed选项以对象的形式，里面包含多个自定义函数
+-->
+</body>
+</html>
