@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的混合选项 mixins</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>mixins</h1>
+<hr>
+<div id="app">
+    {{ num }}
+    <p><button v-on:click="add">add</button><button v-on:click="jian">jian</button></p>
+</div>
+<script type="text/javascript">
+    Vue.mixin({
+        updated: function () {
+            console.log("全局的混入");
+        }
+    });
+    var addConsole = {
+        updated: function () {
+            console.log("数据更新了");
+        }
+    }
+    var addConsole2 = {
+        updated: function () {
+            console.log("数据更新了2");
+        }
+    }
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            num: 1
+        },
+        methods: {
+            add: function(){
+                this.num++;
+            },
+            jian: function () {
+                this.num--;
+            }
+        },
+        updated: function () {
+            console.log("原生的钩子");
+        },
+        mixins: [addConsole,addConsole2]
+    });
+</script>
+<!--笔记-->
+<!--
+1.mixins在构造器内部带s，在全局Vue.mixin不带s，和局部组件和全局组件多么的相同。
+2.mixins是在不改变现有逻辑的情况下，新增的逻辑。
+3.执行的顺序是：全局的混入函数，局部的混入函数，原生自带的函数。
+4.时光是值得珍惜，但是也不是一日之功，当日日勉励，解决目前现状。[以自己工作为中心，其余的不管。]
+-->
+</body>
+</html>

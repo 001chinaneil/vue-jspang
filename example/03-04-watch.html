@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的watch选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Vue的watch选项</h1>
+<hr>
+<div id="app">
+    <p>{{ wendu }}</p>
+    <p>{{ chuanyi }}</p>
+    <p>
+        <button v-on:click="add">添加温度</button>
+        <button v-on:click="jian">降低温度</button>
+    </p>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            wendu: 13,
+            chuanyi: "夹克长裙"
+        },
+        methods: {
+            add: function(){
+                this.wendu += 5;
+            },
+            jian: function(){
+                this.wendu -= 5;
+            }
+        },
+        watch: {
+            wendu: function(newVal,oldVal){
+                if(newVal > 26){
+                    this.chuanyi = "T恤短袖";
+                }else if(newVal > 0 && newVal < 26){
+                    this.chuanyi = "夹克长裙";
+                }else{
+                    this.chuanyi = "棉衣羽绒服";
+                }
+            }
+        }
+    });
+</script>
+<!--笔记-->
+<!--
+1.[难记忆点]watch的第一个参数是检测的数据对象，参数newVal,oldVal分别是新数据和旧数据。
+2.以提升自己为核心，以增加薪资为目标，围绕着前后端分离技术栈，前端前沿知识为驱动。
+3.实例写法，可以提高程序的灵活性：eg: app.$watch("xxx",function(){});
+-->
+</body>
+</html>
