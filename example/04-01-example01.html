@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例入门-实例属性</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.js"></script>
+</head>
+<body>
+<h1>Hello World</h1>
+<hr>
+<div id="app">
+    {{ message }}
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello World!123"
+        },
+        mounted: function () {
+            $("#app").html("Hello JQuery~~");
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的扩展选项 extends</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>extends选项</h1>
+<hr>
+<div id="app">
+    ${ num }
+    <p><button v-on:click="add">add</button></p>
+    <hr>
+
+</div>
+<script type="text/javascript">
+    var extendObj = {
+        updated: function () {
+            console.log("扩展里的被增加了");
+        },
+        methods: {
+            add: function () {
+                this.num+=2;
+            }
+        }
+    }
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            num: 1
+        },
+        methods: {
+            add: function () {
+                this.num++;
+            }
+        },
+        extends: extendObj,
+        delimiters: ["${","}"]
+    });
+</script>
+<!--笔记-->
+<!--
+1.和mixins也太像了吧，它们之间的区别是什么
+2.构造器内部方法可以把扩展里面的同名方法覆盖。扩展选项俨然一个新的构造器。
+3.delimiters选项：它的作用是改变差值的符号。eg: delimiters: ["${","}"]
+-->
+</body>
+</html>
