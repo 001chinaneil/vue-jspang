@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Hello World</h1>
+<hr>
+<div id="app">
+
+</div>
+<p><button onclick="uninstall();">卸载</button></p>
+<script type="text/javascript">
+    //写一个扩展
+    var jspang = Vue.extend({
+        template: `<p>{{ message }}</p>`,
+        data: function () {
+            return {
+                message: "Hello,I am jsPang"
+            }
+        }
+    });
+    var vm = new jspang().$mount("#app");//Vue扩展，和挂载到DOM上，真是都忘记了
+    function uninstall(){
+        vm.$destroy();//把扩展从DOM中卸载下来
+    }
+</script>
+<!--笔记-->
+<!--
+1.Vue外面的盒子，渲染完有时候有，有时候没有，什么情况？
+2.vm.$forceUpdate(); 更新方法
+3.$nextTick() 数据修改方法 和 构造器里的updated生命周期很像
+//后面的架构：
+1.疑问: 怎么把打包好的前端资源发布到服务器上，就是怎么和后天语言合作，发布代码？
+2.前后端分离解决方案基本采用SPA的方式，数据都是通过接口获取，从组件化、数据流、状态容器、网路请求、
+单页路由等都给出了全家桶方案。
+3.webpack本身的定位是一个资源管理和打包构建工作
+-->
+</body>
+</html>
