@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<title>Vue的实例事件</title>-->
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<!--<h1>Vue的实例事件</h1>-->
+<hr>
+<div id="app">
+    {{ num }}
+    <p><button v-on:click="add">add</button></p>
+</div>
+<p><button onclick="reduce()">reduce</button></p>
+<p><button onclick="reduceOnce()">reduceOnce</button></p>
+<p><button onclick="off()">off</button></p>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            num: "1"
+        },
+        methods: {
+            add: function(){
+                this.num++;
+            }
+        }
+    });
+    //只是在构造器外部注册方法
+    vue.$on("reduce",function () {
+        this.num--;
+    });
+    vue.$once("reduceOnce",function(){
+        this.num--;
+    });
+    //下面是原始JS执行逻辑和方式
+    <!--如果按钮在外部，可以使用$emit()来调用内部方法-->
+    function reduce(){
+        vue.$emit("reduce");
+        console.log("减少");
+    }
+    function reduceOnce(){
+        vue.$emit("reduceOnce");
+        console.log("减少了一次");
+    }
+    function off(){
+        vue.$off("reduce");
+        console.log("注销掉了reduce方法");
+    }
+</script>
+<!--笔记-->
+<!--
+1.vue.$on();和vue.$once();就是在构造器外部写个方法；
+2.然后就可以走正常的JS方法调用了。vue.$emit("函数名字");
+3.vue.$off("被注销的函数名字");写在script里，此方法就被注销掉了！[谨记]
+-->
+</body>
+</html>
